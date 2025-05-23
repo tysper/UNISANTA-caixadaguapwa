@@ -7,6 +7,7 @@
     <link rel="icon" href="./resources/favicon/favicon_256.ico" type="image/x-icon">
     <link rel="shortcut icon" type="image/x-icon" href="./resources/favicon/favicon_256.ico">
     <link rel="stylesheet" href="./style.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <div class="div__container div_outter">
@@ -14,7 +15,7 @@
         <div class="div__header div_outter">
 
             <div class="div__icon">
-                <img src="./resources/images/logo.png">
+                <img class="header__icon" src="./resources/images/logo.png">
             </div>
 
             <div class="div__title">
@@ -23,16 +24,27 @@
 
         </div>
 
-        <div class="div__analitycs div_outter">
+        <div class="div__analytics div_outter">
 
             <div class="div__widget" data-name="water_level">
                 <div class="widget__title_container">
                     <p class="widget__title text">Nível da água - reservatório</p>
                 </div>
 
-                <div class="widget__info_container">
+                <div class="widget__info_container widget__water_level">
+                    <div class="water__level_liquid" style="top: 50%;"></div>
+
+                    <div class="div__water_level_text">
+                        <p class="water__level_text">
+                            <span class="water__level_text_percent">50</span>%
+                        </p>
+                        <p class="water__level_text">
+                            <span class="water__level_text_litter">0.5</span>L
+                        </p>
+                    </div>
 
                 </div>
+
             </div>
 
             <div class="div__widget" data-name="lorawan_state">
@@ -41,7 +53,10 @@
                 </div>
                 
                 <div class="widget__info_container">
-
+                    <div class="widget__state state_enabled"></div>
+                    <div class="widget__state_text">
+                        <p class="state__text text">Conectado</p>
+                    </div>
                 </div>
             </div>
 
@@ -51,14 +66,17 @@
                 </div>
                 
                 <div class="widget__info_container">
-
+                    <div class="widget__state state_disabled"></div>
+                    <div class="widget__state_text">
+                        <p class="state__text text">Desligado</p>
+                    </div>
                 </div>
             </div>
 
         </div>
 
         <div class="div__lastupdate div__outter">
-            <p class="lastupdate__time_text text">Atualizado a <span class="lastupdate__time_time text"></span></p>
+            <p class="lastupdate__time_text text">Atualizado a <span class="lastupdate__time_time text">3 segundos</span></p>
         </div>
     </div>
 </body>
