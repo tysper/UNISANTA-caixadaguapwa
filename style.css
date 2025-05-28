@@ -89,11 +89,9 @@ img {
     width: 42px;
     height: 42px;
     border-radius: 8px;
-}
-
-.widget__state.state_disabled {
     background-color: #C03A3A;
 }
+
 
 .widget__state.state_enabled {
     background-color: #3AC077;
