@@ -95,12 +95,3 @@ const water_level = new Water_level_component(widgets_map.water_level);
 lorawan_state.change_state(false);
 water_pump_state.change_state(false);
 
-
-
-
-
-
-
-
-
-
