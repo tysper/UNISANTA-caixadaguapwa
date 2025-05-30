@@ -45,9 +45,9 @@ class Water_level_component extends Component {
     }
 
     _change_text_litters(percentage){
-        const total_capacity_litters = 2;
+        const total_capacity_litters = 5;
         const water__level_litter_el = this.wrapper_element_html.querySelector(".water__level_text_litter");
-        water__level_litter_el.textContent = `${(2*(percentage/100)).toFixed(1)}`;
+        water__level_litter_el.textContent = `${(total_capacity_litters*(percentage/100)).toFixed(1)}`;
     }
 
     change_water_level(percentage){
@@ -72,14 +72,13 @@ function update_lastupdate_text(){
     const now = new Date();
 
     const year = now.getFullYear();
-    const month = now.getMonth() + 1;     // 1–12 (add 1 because it's 0-based)
-    const date = now.getDate();           // 1–31
-    const hours = now.getHours();         // 0–23
-    const minutes = now.getMinutes();     // 0–59
+    const month = now.getMonth() + 1;     
+    const date = now.getDate();           
+    const hours = now.getHours();         
+    const minutes = now.getMinutes();     
 
 
-
-    last_update_text = `${date.toString().padStart(2,"0")}.${month.toString().padStart(2, "0")}.${year} ás ${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
+    last_update_text = `Atualizado em ${date.toString().padStart(2,"0")}.${month.toString().padStart(2, "0")}.${year} as ${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
     
     lastupdate_el.textContent = last_update_text;
 }
@@ -87,11 +86,37 @@ function update_lastupdate_text(){
 // Creating each component to interact with the interface
 
 const lorawan_state = new Component(widgets_map.lorawan_state, {active_state: "conectado", unactive_state: "desconectado"});
-
 const water_pump_state = new Component(widgets_map.water_pump_state, {active_state: "ligado", unactive_state: "desligado"});
 const water_level = new Water_level_component(widgets_map.water_level);
 
 // Setting the default state of the component
 lorawan_state.change_state(false);
 water_pump_state.change_state(false);
+water_level.change_water_level(0);
 
+// Adding event listener in button
+const update_button_el = document.querySelector(".button.button_update");
+
+function get_updated_information(){
+    return {
+        lorawan: {state: true},
+        water_pump: {state: true},
+        water_level: {level: 90}
+    }
+}
+
+function update_stats_info(){
+    const update_info = get_updated_information();
+
+    lorawan_state.change_state(update_info.lorawan.state);
+    water_pump_state.change_state(update_info.water_pump);
+    water_level.change_water_level(update_info.water_level.level);
+
+    update_lastupdate_text();
+}
+
+update_button_el.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    update_stats_info();
+});

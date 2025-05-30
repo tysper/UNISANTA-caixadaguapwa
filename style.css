@@ -92,11 +92,13 @@ img {
     height: 42px;
     border-radius: 8px;
     background-color: #C03A3A;
+    transition: ease all 0.5s;
 }
 
 
 .widget__state.state_enabled {
     background-color: #3AC077;
+    transition: ease all 0.5s;
 }
 
 .widget__state_text {
@@ -141,6 +143,7 @@ img {
     bottom: 0;
     background-color: #458BE5;
     z-index: 2;
+    transition: all ease 0.3s;
 }
 
 .div__water_level_text {
@@ -190,7 +193,7 @@ img {
     width: 100%;
     align-items: center;
     justify-content: center;
-    padding: 10px 0;
+    padding: 20px 0;
 }
 
 .button {
@@ -198,8 +201,16 @@ img {
     color: white;
     padding: 5px 10px;
     border-radius: 5px;
+    transition: all ease 0.8s;
 }
 
+.button:hover {
+    transform: scale(1.1);
+}
+
+.button:active {
+    transform: scale(0.9);
+}
 .button_update {
     display: flex;
     flex-direction: row;
