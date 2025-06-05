@@ -97,16 +97,20 @@ water_level.change_water_level(0);
 // Adding event listener in button
 const update_button_el = document.querySelector(".button.button_update");
 
-function get_updated_information(){
-    return {
-        lorawan: {state: true},
-        water_pump: {state: true},
-        water_level: {level: 90}
-    }
+async function get_updated_information() {
+  try {
+    const response = await fetch('http://iotcaixadagua.brazilsouth.cloudapp.azure.com:5000/status')
+    if (!response.ok) throw new Error('Erro na requisição')
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.error('Erro ao buscar dados:', error)
+    return null
+  }
 }
 
-function update_stats_info(){
-    const update_info = get_updated_information();
+async function update_stats_info(){
+    const update_info = await get_updated_information();
 
     lorawan_state.change_state(update_info.lorawan.state);
     water_pump_state.change_state(update_info.water_pump);
